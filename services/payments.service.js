@@ -23,7 +23,7 @@ const findOne = async (id) => {
                  WHERE "ID_PAGOS" = ${id}`;
   const [data] = await sequelize.query(query);
   if (!data[0]) {
-    throw boom.notFound("sector not found");
+    throw boom.notFound("paiment not found");
   }
   return data;
 };
@@ -38,7 +38,7 @@ const update = async (id, changes) => {
                 WHERE "ID_PAGOS" = ${id}`;
   const [data] = await sequelize.query(query);
   if (!data[0]) {
-    throw boom.notFound("sector not found");
+    throw boom.notFound("paiment not found");
   }
   return data;
 };
