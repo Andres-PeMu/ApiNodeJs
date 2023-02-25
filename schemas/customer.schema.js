@@ -6,7 +6,7 @@ const lastName = Joi.string();
 const identification = Joi.number();
 const email = Joi.string();
 const phone = Joi.string();
-const id_vencocli = Joi.string();
+const id_vencocli = Joi.number();
 
 const createCustomerSchema = Joi.object({
   name: name.required(),
