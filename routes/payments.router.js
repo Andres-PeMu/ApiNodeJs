@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { create, find, findOne, update, deleteOne } = require('./../services/payments.service');
+const { create, find, findOne, findAndWorkerAndOe, update, deleteOne } = require('./../services/payments.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { createPaymentsSchema, updatePaymentSchema, getPaymentSchema } = require('./../schemas/payments.schema');
 
@@ -9,6 +9,15 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const payments = await find();
+    res.json(payments);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/worker/oe", async (req, res, next) => {
+  try {
+    const payments = await findAndWorkerAndOe();
     res.json(payments);
   } catch (error) {
     next(error);

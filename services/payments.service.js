@@ -17,6 +17,18 @@ const find = async () => {
   return data;
 };
 
+const findAndWorkerAndOe = async () => {
+  const query = `SELECT "ID_PAGOS", "VALOR_PAGO", "ID_TRABAJOR", "ID_GASTOS_OPERACIONES", "IDENTIFICACION", "NOMBRE", "APELLIDO", "CORREO", "TIPO_GASTO", "VALOR_HORA", "HORAS_TRABAJADAS", "VALOR_TOTAL"
+	                FROM public."PAGOS"
+	                INNER 
+	                JOIN public."TRABAJADORES" 
+	                ON "ID_TRABAJOR" = "ID_TRABAJADORES"
+	                JOIN public."GASTOS_OPERACIONALES" 
+	                ON "ID_GASTOS" = "ID_GASTOS_OPERACIONES"`;
+  const [data] = await sequelize.query(query);
+  return data;
+};
+
 const findOne = async (id) => {
   const query = `SELECT "ID_PAGOS", "VALOR_PAGO", "ID_TRABAJOR", "ID_GASTOS_OPERACIONES"
                  FROM public."PAGOS" 
@@ -49,4 +61,4 @@ const deleteOne = async (id) => {
   return { id };
 };
 
-module.exports = { create, find, findOne, update, deleteOne };
+module.exports = { create, find, findOne, findAndWorkerAndOe, update, deleteOne };
