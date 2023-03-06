@@ -17,6 +17,15 @@ const find = async () => {
   return data;
 };
 
+const findAndCustomer = async () => {
+  const query = `SELECT "ID_COBROS", "ID_CLIENTE", "VALOR_COBRO", "FECHA_PAGO", "NOMBRE", "APELLIDO", "IDENTIFICACION", "CORREO", "TELEFONO"
+	                FROM public."COBROS"
+	                INNER JOIN public."CLIENTES" 
+	                ON "ID_CLIENTE" = "ID_CLIENTES"`;
+  const [data] = await sequelize.query(query);
+  return data;
+};
+
 const findOne = async (id) => {
   const query = `SELECT "ID_COBROS", "VALOR_COBRO", "ID_VENCOCLI", "ID_CLIENTE"
                   FROM public."COBROS" 
@@ -49,4 +58,4 @@ const deleteOne = async (id) => {
   return { id };
 };
 
-module.exports = { create, find, findOne, update, deleteOne };
+module.exports = { create, find, findOne, update, deleteOne, findAndCustomer };
